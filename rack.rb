@@ -3,7 +3,7 @@ dep 'rack app', :domain, :domain_aliases, :username, :path, :listen_host, :liste
   path.default('~/current')
   env.default(ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'production')
 
-  requires 'benhoskingsweb repo'.with(path)
+  requires 'benhoskings:web repo'.with(path)
   requires 'benhoskings:app bundled'.with(path, env)
   requires 'benhoskings:rack.logrotate'.with(username)
 end
