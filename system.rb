@@ -22,7 +22,7 @@ end
 
 dep 'core software' do
   requires {
-    on :linux, 'benhoskings:sudo.bin', 'benhoskings:lsof.managed', 'benhoskings:vim.managed', 'benhoskings:curl.bin', 'benhoskings:traceroute.managed', 'benhoskings:htop.managed', 'benhoskings:iotop.managed', 'benhoskings:jnettop.managed', 'benhoskings:tmux.managed', 'benhoskings:nmap.managed', 'benhoskings:tree.managed', 'benhoskings:pv.managed'
+    on :linux, 'sudo.bin', 'benhoskings:lsof.managed', 'benhoskings:vim.managed', 'curl.bin', 'benhoskings:traceroute.managed', 'benhoskings:htop.managed', 'benhoskings:iotop.managed', 'benhoskings:jnettop.managed', 'benhoskings:tmux.managed', 'benhoskings:nmap.managed', 'benhoskings:tree.managed', 'benhoskings:pv.managed'
     on :osx, 'benhoskings:nmap.managed', 'benhoskings:tree.managed', 'benhoskings:pv.managed'
   }
 end
