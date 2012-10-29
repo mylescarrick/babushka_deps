@@ -4,7 +4,6 @@ dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
   end
 
   requires [
-    'ssl certificate'.with(env, domain, 'newington.nsw.edu.au'),
 
     'benhoskings:rails app'.with(
       :env => env,
