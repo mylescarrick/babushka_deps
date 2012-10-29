@@ -15,7 +15,7 @@ end
 dep 'user setup', :username, :key do
   username.default(shell('whoami'))
   requires [
-    'benhoskings:user_exists'.with(:username => username)
+    'benhoskings:user_exists'.with(:username => username),
     'benhoskings:passwordless ssh logins'.with(username, key),
   ]
 end
