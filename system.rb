@@ -29,6 +29,6 @@ dep 'core software' do
   }
 end
 
-dep 'sqlserver prereq' do
-  on :linux, requires ['freetds.lib', 'freetds.bin', 'tdsodbc.bin']
+dep 'tds.managed' do
+  via :apt, %w[freetds-dev freetds-bin tdsodbc]
 end
