@@ -14,7 +14,6 @@ dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
       :data_required => 'no'
     ),
 
-    Replace the default config with our own.
     'conversation:vhost enabled.nginx'.with(
       :app_name => 'perkins',
       :env => env,
