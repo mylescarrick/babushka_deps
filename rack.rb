@@ -1,6 +1,6 @@
 dep 'rack app', :domain, :domain_aliases, :username, :path, :listen_host, :listen_port, :proxy_host, :proxy_port, :env, :nginx_prefix, :enable_http, :enable_https, :force_https, :data_required do
   username.default!(shell('whoami'))
-  path.default('~/current')
+  path.default('/srv/http/#{app_name}/current')
   env.default(ENV['RAILS_ENV'] || ENV['RACK_ENV'] || 'production')
 
   requires 'benhoskings:web repo'.with(path)
