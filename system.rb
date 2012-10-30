@@ -1,3 +1,4 @@
+
 dep 'system', :host_name, :locale_name do
   requires [
     'benhoskings:set.locale'.with(locale_name),
@@ -26,4 +27,8 @@ dep 'core software' do
     on :linux, 'sudo.bin', 'benhoskings:lsof.managed', 'benhoskings:vim.managed', 'curl.bin', 'benhoskings:traceroute.managed', 'benhoskings:htop.managed', 'benhoskings:iotop.managed', 'benhoskings:jnettop.managed', 'benhoskings:tmux.managed', 'benhoskings:nmap.managed', 'benhoskings:tree.managed', 'benhoskings:pv.managed'
     on :osx, 'benhoskings:nmap.managed', 'benhoskings:tree.managed', 'benhoskings:pv.managed'
   }
+end
+
+dep 'sqlserver prereq' do
+  on :linux, requires ['freetds.lib', 'freetds.bin', 'tdsodbc.bin']
 end
