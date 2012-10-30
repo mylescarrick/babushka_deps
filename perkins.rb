@@ -14,7 +14,7 @@ dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
       :data_required => 'no'
     ),
 
-    'conversation:vhost enabled.nginx'.with(
+    'vhost enabled.nginx'.with(
       :app_name => 'perkins',
       :env => env,
       :listen_host => host,
