@@ -1,4 +1,4 @@
-dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
+dep 'aaibs', :env, :host, :domain, :app_user, :app_root, :key do
   def db_name
     YAML.load_file(app_root / 'config/database.yml')[env.to_s]['database']
   end
@@ -15,11 +15,11 @@ dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
     ),
 
     'vhost enabled.nginx'.with(
-      :app_name => 'perkins',
+      :app_name => 'aaibs',
       :env => env,
       :listen_host => host,
       :domain => domain,
-      :domain_aliases => 'perkins perkins.newington.nsw.edu.au',
+      :domain_aliases => 'aaibs beta.aaibs.org',
       :path => app_root,
       :proxy_host => 'localhost',
       :proxy_port => 9000
@@ -27,14 +27,14 @@ dep 'perkins app', :env, :host, :domain, :app_user, :app_root, :key do
   ]
 end
 
-dep 'perkins packages' do
+dep 'aaibs packages' do
   requires [
     'running.nginx',
-    'perkins common packages',
+    'aaibs common packages',
   ]
 end
 
-dep 'perkins common packages' do
+dep 'aaibs common packages' do
   requires [
     'bundler.gem',
     'curl.lib',
