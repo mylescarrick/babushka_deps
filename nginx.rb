@@ -94,7 +94,7 @@ dep 'running.nginx', :nginx_prefix do
 end
 
 dep 'startup script.nginx', :nginx_prefix do
-  requires 'nginx.src'.with(:nginx_prefix => nginx_prefix)
+  requires 'conversation:nginx.src'.with(:nginx_prefix => nginx_prefix)
   met? {
     shell('initctl list').split("\n").grep(/^nginx\b/).any?
   }
@@ -109,7 +109,7 @@ dep 'configured.nginx', :nginx_prefix do
   end
   nginx_prefix.default!('/opt/nginx') # This is required because nginx.src might be cached.
   requires [
-    'nginx.src'.with(:nginx_prefix => nginx_prefix),
+    'conversation:nginx.src'.with(:nginx_prefix => nginx_prefix),
     'benhoskings:www user and group',
     'benhoskings:nginx.logrotate'
   ]
@@ -118,42 +118,5 @@ dep 'configured.nginx', :nginx_prefix do
   }
   meet {
     render_erb 'nginx/nginx.conf.erb', :to => nginx_conf, :sudo => true
-  }
-end
-
-dep 'nginx.src', :nginx_prefix, :version do
-  nginx_prefix.default!("/opt/nginx")
-  version.default!('1.2.3')
-
-  requires 'pcre.lib', 'ssl.lib', 'zlib.lib'
-
-  source "http://nginx.org/download/nginx-#{version}.tar.gz"
-
-  configure_args L{
-    [
-      "--with-ipv6",
-      "--with-pcre",
-      "--with-http_ssl_module",
-      "--with-http_gzip_static_module",
-      "--with-ld-opt='#{shell('pcre-config --libs')}'"
-    ].join(' ')
-  }
-
-  prefix nginx_prefix
-  provides nginx_prefix / 'sbin/nginx'
-
-  configure { log_shell "configure", default_configure_command }
-  build { log_shell "build", "make" }
-  install { log_shell "install", "make install", :sudo => true }
-
-  met? {
-    if !File.executable?(nginx_prefix / 'sbin/nginx')
-      log "nginx isn't installed"
-    else
-      installed_version = shell(nginx_prefix / 'sbin/nginx -v') {|shell| shell.stderr }.val_for(/(nginx: )?nginx version:/).sub('nginx/', '')
-      (installed_version == version).tap {|result|
-        log "nginx-#{installed_version} is installed"
-      }
-    end
   }
 end
