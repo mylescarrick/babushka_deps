@@ -30,5 +30,7 @@ dep 'core software' do
 end
 
 dep 'tds.managed' do
-  via :apt, %w[freetds-dev freetds-bin tdsodbc]
+  installs {
+    via :apt, %w[freetds-dev freetds-bin tdsodbc]
+  }
 end
